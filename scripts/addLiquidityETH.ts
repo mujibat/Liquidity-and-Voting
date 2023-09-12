@@ -44,6 +44,7 @@ async function main() {
             deadline, {
                 value: ethers.parseEther('2')
             })
+    await uniswapContract.connect(ethSigner).addLiquidityETH
 }
 
 main().catch((error) => {
