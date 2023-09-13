@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-interface IUniswap{
+interface IUniswap {
     function swapExactTokensForTokens(
         uint amountIn,
         uint amountOutMin,
@@ -9,7 +9,7 @@ interface IUniswap{
         address to,
         uint deadline
     ) external returns (uint[] memory amounts);
-   
+
     function addLiquidity(
         address tokenA,
         address tokenB,
@@ -20,6 +20,7 @@ interface IUniswap{
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB, uint liquidity);
+
     function addLiquidityETH(
         address token,
         uint amountTokenDesired,
@@ -27,7 +28,11 @@ interface IUniswap{
         uint amountETHMin,
         address to,
         uint deadline
-    ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+    )
+        external
+        payable
+        returns (uint amountToken, uint amountETH, uint liquidity);
+
     function removeLiquidity(
         address tokenA,
         address tokenB,
@@ -37,6 +42,7 @@ interface IUniswap{
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB);
+
     function removeLiquidityETH(
         address token,
         uint liquidity,
@@ -45,10 +51,32 @@ interface IUniswap{
         address to,
         uint deadline
     ) external returns (uint amountToken, uint amountETH);
-     }
+
+    function factory() external pure returns (address);
+
+    function WETH() external pure returns (address);
+}
+
+interface IUniswapV2Factory {
+    function getPair(
+        address tokenA,
+        address tokenB
+    ) external view returns (address pair);
+}
+
 interface IERC20 {
-     function approve(address spender, uint rawAmount) external returns (bool);
-     function balanceOf(address _owner) external view returns (uint256 balance);
-     function transfer(address to, uint256 value) external returns (bool success);
-    function transferFrom(address from, address to, uint256 value) external returns (bool);
+    function approve(address spender, uint rawAmount) external returns (bool);
+
+    function balanceOf(address _owner) external view returns (uint256 balance);
+
+    function transfer(
+        address to,
+        uint256 value
+    ) external returns (bool success);
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) external returns (bool);
 }
